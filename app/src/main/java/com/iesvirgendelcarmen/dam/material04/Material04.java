@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class Material04 extends AppCompatActivity {
+public class Material04 extends AppCompatActivity implements View.OnClickListener {
     CoordinatorLayout coordinatorLayout;
     FloatingActionButton fab;
     Button btnSimple;
@@ -29,7 +29,11 @@ public class Material04 extends AppCompatActivity {
         btnInteractivo=(Button)findViewById(R.id.btnInteractivo);
         btnPersonalizado=(Button)findViewById(R.id.btnPersonalizado);
 
-        btnSimple.setOnClickListener(new View.OnClickListener() {
+        btnSimple.setOnClickListener(this);
+        btnInteractivo.setOnClickListener(this);
+        btnPersonalizado.setOnClickListener(this);
+
+       /* btnSimple.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Snackbar snackbar=Snackbar.make(coordinatorLayout,"EJEMPLO DE SNACKBAR",Snackbar.LENGTH_LONG);
@@ -69,6 +73,39 @@ public class Material04 extends AppCompatActivity {
                 snackbar.setActionTextColor(Color.CYAN);
                 snackbar.show();
             }
-        });
+        });*/
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btnSimple:
+                Snackbar snackbar=Snackbar.make(coordinatorLayout,"EJEMPLO DE SNACKBAR",Snackbar.LENGTH_LONG);
+                snackbar.show();
+                break;
+            case R.id.btnInteractivo:
+                Snackbar snackbar2=Snackbar.make(coordinatorLayout,"MENSAJE BORRADO",Snackbar.LENGTH_LONG).setAction("UNDO", new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        Snackbar snackbar1=Snackbar.make(coordinatorLayout,"MENSAJE RESTAURADO",Snackbar.LENGTH_LONG);
+                        snackbar1.show();
+                    }
+                });
+                snackbar2.show();
+                break;
+            case R.id.btnPersonalizado:
+                Snackbar snackbar3=Snackbar.make(coordinatorLayout,"NO ENCUENTRO LA RED",Snackbar.LENGTH_LONG).setAction("RETRY", new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        Snackbar snackbar1=Snackbar.make(coordinatorLayout,"CONEXION CANCELADA",Snackbar.LENGTH_LONG);
+                        snackbar1.show();
+                    }
+                });
+                View sbView=snackbar3.getView();
+                TextView texto=(TextView)sbView.findViewById(android.support.design.R.id.snackbar_text);
+                texto.setTextColor(Color.YELLOW);
+                snackbar3.setActionTextColor(Color.CYAN);
+                snackbar3.show();
+        }
     }
 }
