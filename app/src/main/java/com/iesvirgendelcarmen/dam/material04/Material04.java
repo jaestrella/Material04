@@ -21,8 +21,6 @@ public class Material04 extends AppCompatActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_material04);
 
-
-
         coordinatorLayout=(CoordinatorLayout)findViewById(R.id.coordinatorLayout);
         fab=(FloatingActionButton)findViewById(R.id.fab);
         btnSimple=(Button)findViewById(R.id.btnSimple);
@@ -74,6 +72,13 @@ public class Material04 extends AppCompatActivity implements View.OnClickListene
                 snackbar.show();
             }
         });*/
+       fab.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Snackbar snackbarNombre=Snackbar.make(coordinatorLayout,"José Antonio Estrella Fernández",Snackbar.LENGTH_LONG);
+               snackbarNombre.show();
+           }
+       });
     }
 
     @Override
